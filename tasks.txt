@@ -1,0 +1,16 @@
+Users
+-> create,get,
+
+Auth
+-> JWT token
+  -> Creating
+  -> Refresh
+    -> Timer 
+
+Orders
+-> cart 
+-> 
+
+Books
+-> List 
+  
