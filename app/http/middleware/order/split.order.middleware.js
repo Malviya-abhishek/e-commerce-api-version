@@ -23,11 +23,9 @@ exports.splitOrder = (req, res, next) => {
 			address: req.body.address,
       paymentType:req.body.paymentType
 		};
-    console.log(sellerMap[key]);
 		orders.push(order);
 	});
 
-  console.log(orders);
 
 	req.body.orders = orders;
 

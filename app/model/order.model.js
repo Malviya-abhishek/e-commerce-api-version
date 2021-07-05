@@ -77,9 +77,5 @@ exports.findByIdForCustomer = (id) => {
 };
 
 exports.createOrder = (ordersData) => {
-	return Order.insertMany(ordersData, function (err, orderData) {
-		if (err) return err;
-		// console.log("[order model]", orderData);
-		return orderData;
-	});
+	return Order.insertMany(ordersData);
 };
