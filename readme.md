@@ -56,7 +56,7 @@ or
 yarn dev
 ```
 
-## For API read API.MD
+## For API read api.md
 
 ## License
 MIT
