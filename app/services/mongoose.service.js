@@ -6,10 +6,12 @@ const options = {
 	useUnifiedTopology: true,
 };
 
+
+
 const connectWithRetry = () => {
 	console.log("MongoDB connection with retry");
 	mongoose
-		.connect("mongodb://localhost:27017/rest-practice", options)
+		.connect("mongodb://localhost:27017/"+ process.env.DB_NAME, options)
 		.then(() => {
 			console.log("MongoDB connected");
 		})
