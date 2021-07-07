@@ -56,7 +56,7 @@ or
 yarn dev
 ```
 
-## For API read api.md
+## For API read [api.md](https://github.com/Malviya-abhishek/e-commerce-api-version/blob/master/api.md)
 
 ## License
 MIT
