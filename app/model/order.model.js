@@ -79,3 +79,7 @@ exports.findByIdForCustomer = (id) => {
 exports.createOrder = (ordersData) => {
 	return Order.insertMany(ordersData);
 };
+
+exports.findById = (id) =>{
+	return Order.findById(id);
+}

@@ -38,3 +38,15 @@ exports.getById = (req, res) => {
 			res.status(500).send({ err: err });
 		});
 };
+
+exports.patchById = (req, res) =>{
+	BookModel.patchUser(req.params.userId, req.body).then((result) => {
+		res.sendStatus(204);
+	});
+};
+
+exports.removeById = (req, res) => {
+	BookModel.removeById(req.params.userId).then((result) => {
+		res.status(204).send({});
+	});
+};

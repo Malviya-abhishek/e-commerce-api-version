@@ -8,16 +8,24 @@ const SELLER = parseInt(process.env.SELLER);
 exports.routesConfig = function (app) {
 	app.get("/books", [BookController.list]);
 
-	app.get("/books/:bookId", [
-    BookController.getById
-  ]);
+	app.get("/books/:bookId", [BookController.getById]);
 
 	app.post("/books", [
 		AuthValidationMiddleware.validJWTNeeded,
 		AuthPermissionMiddleware.minimumPermissionLevelRequired(SELLER),
 		VerifyBookMiddleware.isValidBookFeilds,
-    BookController.create
+		BookController.create,
 	]);
 
-  // To do patch and delete
+	app.patch("/books/:bookId", [
+		AuthValidationMiddleware.validJWTNeeded,
+		AuthPermissionMiddleware.sameUserProduct,
+		BookController.patchById,
+	]);
+
+	app.delete("/books/:bookId", [
+		AuthValidationMiddleware.validJWTNeeded,
+		AuthPermissionMiddleware.sameUserProduct,
+		BookController.removeById,
+	]);
 };

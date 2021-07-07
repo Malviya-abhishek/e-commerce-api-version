@@ -2,6 +2,7 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 const ADMIN_PERMISSION = 4069;
+const BookModel = require("../../../model/book.model");
 
 exports.minimumPermissionLevelRequired = (required_permission_level) => {
 	return (req, res, next) => {
@@ -31,3 +32,16 @@ exports.sameUserCanDoThisAction = (req, res, next) => {
 	if (req.params.userId === userId) return next();
 	else return res.status(403).send();
 };
+
+exports.sameUserProduct = (req, res, next) =>{
+	let sellerId  = req.jwt.userId;
+	let productId = req.params.bookId;
+	BookModel.findById(productId).then((result)=>{
+		if(result.sellerId === sellerId)
+			next();
+		else
+			return res.sendStats(403);
+	}).catch((err)=>{
+		return res.sendStats(404);
+	})
+}

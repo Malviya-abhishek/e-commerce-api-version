@@ -10,7 +10,6 @@ exports.insert = (req, res) => {
 
 	req.body.password = salt + "$" + hash;
 
-
 	if (!req.body.permissionLevel) req.body.permissionLevel = 1;
 
 	UserModel.createUser(req.body)
@@ -30,4 +29,24 @@ exports.getById = (req, res) => {
 		.catch((err) => {
 			res.status(500).send({ err: err });
 		});
+};
+
+exports.patchById = (req, res) => {
+	if (req.body.password) {
+		let salt = crypto.randomBytes(16).toString("base64");
+		let hash = crypto
+			.createHmac("sha512", salt)
+			.update(req.body.password)
+			.digest("base64");
+		req.body.password = salt + "$" + hash;
+	}
+	UserModel.patchUser(req.params.userId, req.body).then((result) => {
+		res.sendStatus(204);
+	});
+};
+
+exports.removeById = (req, res) => {
+	UserModel.removeById(req.params.userId).then((result) => {
+		res.status(204).send({});
+	});
 };

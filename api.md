@@ -9,6 +9,8 @@ like a seller can only post products on the api
 | ------ | ------ |
 | POST | /users |
 | GET | /users/:userId |
+| PATCH | /users/:userId |
+| DELETE | /users/:userId |
 
 ### Post method "/users"
 *Sample request*
@@ -46,8 +48,6 @@ localhost:3000/users/60e15c1e11a1b61f8a887c4a
 }
 ```
 
-> PUT PATCH DELETE under construction
-
 
 ## Authentication methods
 
@@ -84,6 +84,8 @@ localhost:3000/users/60e15c1e11a1b61f8a887c4a
 | GET | /books |
 | POST | /books |
 | GET | /books/:bookId |
+| PATCH | /books/:bookId |
+| DELETE | /books/:bookId |
 
 ### GET method "/books"
 *Sample request*

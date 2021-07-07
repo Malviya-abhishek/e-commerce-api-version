@@ -91,3 +91,25 @@ exports.findByIdList = async function (ids) {
 		}
 	});
 };
+
+exports.patchUser = (id, userData) => {
+	return User.findOneAndUpdate(
+		{
+			_id: id,
+		},
+		userData
+	);
+};
+
+
+exports.removeById = (userId) => {
+	return new Promise((resolve, reject) => {
+		Book.deleteMany({ _id: userId }, (err) => {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(err);
+			}
+		});
+	});
+};
